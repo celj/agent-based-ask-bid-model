@@ -1,12 +1,12 @@
 # 27 dec
 
-[ ] Tijuana
+- [ ] Tijuana
 
 # 28 dec
 
 - [ ] Monclova
 - [ ] Tijuana
-- [ ] Puebla
+- [x] Puebla
 
 # 29 dec
 
