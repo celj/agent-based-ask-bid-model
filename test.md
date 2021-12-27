@@ -1,6 +1,6 @@
 # 27 dec
 
-- [ ] Tijuana
+[ ] Tijuana
 
 # 28 dec
 
