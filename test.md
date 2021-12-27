@@ -1,21 +1,21 @@
 # 27 dec
 
-- [ ] Tijuana
+- [x] Tijuana *
 
 # 28 dec
 
-- [ ] Monclova
-- [ ] Tijuana
+- [x] Monclova *
+- [x] Tijuana
 - [x] Puebla
 
 # 29 dec
 
-- [ ] Monclova
-- [ ] Torreón
-- [ ] Irapuato
-- [ ] Querétaro
+- [x] Monclova *
+- [x] Torreón *
+- [ ] Irapuato -
+- [x] Querétaro
 
 # 30 dec
 
-- [ ] Cuernavaca
+- [x] Cuernavaca *
 
