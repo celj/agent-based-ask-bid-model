@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+
 class agent:
     __ID = 0
     __gamma = 0
@@ -18,11 +19,11 @@ class agent:
 class utility(agent):
     def __init__(self, v1):
         self.__ID = 1
-        self.__EA = np.random.uniform(low = 0.1, high = 2.0)
+        self.__EA = np.random.uniform(low=0.1, high=2.0)
         self.__Ask = 0
-        self.__lambda1 = np.random.uniform(low = 0.85, high = 1.0)
-        self.__lambda2 = np.random.uniform(low = 0.75, high = 1.25)
-        self.__gamma = np.random.uniform(low = 0.1, high = 0.25)
+        self.__lambda1 = np.random.uniform(low=0.85, high=1.0)
+        self.__lambda2 = np.random.uniform(low=0.75, high=1.25)
+        self.__gamma = np.random.uniform(low=0.1, high=0.25)
         self.__C = v1
 
     def computeAsk(self, OBid, Phl):
@@ -33,15 +34,15 @@ class utility(agent):
         if self.__EA < 2.0:
             self.__EA += self.__EA * (self.__EA / 10)
         else:
-            self.__EA = np.random.uniform(low = 0.1, high = 2.0)
+            self.__EA = np.random.uniform(low=0.1, high=2.0)
 
-        if (OBid == 0):
+        if OBid == 0:
             self.__Ask = self.__C + (self.__lambda1 * (Phl - self.__C))
         else:
             Pb = self.__C * self.__lambda2
             Pt = OBid
 
-            if (Pb > Pt):
+            if Pb > Pt:
                 Step = (Pt - Pb) * self.__gamma * self.__EA
             else:
                 Step = max(Pt, self.__C - Pb) * (1 - self.__EA)
@@ -50,14 +51,15 @@ class utility(agent):
 
         return self.__Ask, Pb, Pt, Step
 
+
 class Building(agent):
     def __init__(self, v1):
         self.__ID = 2
-        self.__EA = np.random.uniform(low = 0.1, high = 1.0)
+        self.__EA = np.random.uniform(low=0.1, high=1.0)
         self.__Bid = 0
-        self.__lambda3 = np.random.uniform(low = 0.5, high = 0.85)
-        self.__lambda4 = np.random.uniform(low = 0.5, high = 1.0)
-        self.__gamma = np.random.uniform(low = 0.1, high = 0.25)
+        self.__lambda3 = np.random.uniform(low=0.5, high=0.85)
+        self.__lambda4 = np.random.uniform(low=0.5, high=1.0)
+        self.__gamma = np.random.uniform(low=0.1, high=0.25)
         self.__D = v1
 
     def computeBid(self, OAsk, Pll):
@@ -68,15 +70,15 @@ class Building(agent):
         if self.__EA < 2.0:
             self.__EA += self.__EA * (self.__EA / 10)
         else:
-            self.__EA = np.random.uniform(low = 0.1, high = 2.0)
+            self.__EA = np.random.uniform(low=0.1, high=2.0)
 
-        if (OAsk == 0):
+        if OAsk == 0:
             self.__Bid = self.__D - (self.__lambda3 * (self.__D - Pll))
         else:
             Pb = self.__D * self.__lambda4
             Pt = OAsk
 
-            if (Pt <= Pb):
+            if Pt <= Pb:
                 Step = ((Pt - Pb) * self.__gamma) * self.__EA
             else:
                 Step = (min(Pt, self.__D) - Pb) * self.__gamma * (1 - self.__EA)
@@ -84,6 +86,7 @@ class Building(agent):
             self.__Bid = Pb + Step
 
         return self.__Bid, Pb, Pt, Step
+
 
 Phl = 10
 Pll = 1
@@ -108,7 +111,7 @@ for current in range(1, rounds):
     log.append([OB, PbB, PtB, StepB, OA, PbA, PtA, StepU])
     lAB.append([OB, OA])
 
-    if (OB >= OA):
+    if OB >= OA:
         print("Matching done")
         break
 
@@ -119,8 +122,7 @@ plt.plot(arrayAB)
 plt.title("Asks vs Bids")
 plt.show()
 
-plt.plot(arrayLog[:,3])
-plt.plot(arrayLog[:,7])
+plt.plot(arrayLog[:, 3])
+plt.plot(arrayLog[:, 7])
 plt.title("Steps")
 plt.show()
-
